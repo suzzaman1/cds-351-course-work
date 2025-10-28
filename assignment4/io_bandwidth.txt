@@ -1,0 +1,10 @@
+1. The measured write bandwidth changes with file size. For a small file of 256 MB, the write speed is very high at about 4853 MB/s. 
+   For larger files of 512 MB and 1024 MB, the write speed drops to around 1323 MB/s and 1753 MB/s. This happens because small files can 
+   fit into the computer’s memory cache, making writes appear very fast. Larger files exceed the cache, so data must be written directly 
+   to the disk, which is slower.
+
+2. The measured read bandwidth stays high across all file sizes, around 7 GB/s. This is because recently written files are often still in
+   memory cache, allowing reads to happen quickly regardless of the file size.
+
+3. Implications for HPC applications: Writing large datasets can become a performance bottleneck if the storage system cannot handle the 
+   full data quickly. Reading is usually fast, especially if the data is cached.
