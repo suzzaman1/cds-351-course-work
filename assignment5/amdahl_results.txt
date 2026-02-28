@@ -1,0 +1,33 @@
+1. How do your measured speedups compare to the ideal linear speedup?
+
+The measured speedups were slighly higher than the ideal linear speedups until reaching 8 threads. After 8 threads, the 
+measured speedups fall below the ideal linear speedup. This is due to the effects of synchronization and communication between 
+threads or overhead.
+
+
+2. What value of P do you estimate from your data? What parts of the program contribute to the serial fraction 1- P?
+
+I would say about 93% - 98%. The parts of the program that contributes to the serial fraction 1-P is the creating, launching, and joining the std::thread.
+Another part is allocating threads and partial results. The final part is combining the partial sums at the end with a for loop.
+
+
+3. Why does efficiency decrease as the number of threads grows?
+
+Efficiency decreases as the number of threads grow because the serial portion of the code limits total speedup, parallel overheads grows faster due to 
+synchronization and communication, and threads start competing for shared resources.
+
+
+4. Identify at least two practical sources of overhead that Amdahl’s Law does not explicitly model.
+
+Thread joining and load imbalance.
+
+
+5. Suppose you ran this program on a machine with 32 or 64 cores. Predict how the speedup curve would behave and explain why.
+
+The speedup curve with 32 would flatten asymptotically. This is because the serial portion of the equation would dominate. If the number of cores 
+increase to 64, the result would be the same, with a slighly increased, but not significant speed up time.
+
+
+6. (Optional) How might floating-point round-off or sign alternation affect the convergence of π at very large n?
+
+It would lead to loss of precision in high iteration counts.

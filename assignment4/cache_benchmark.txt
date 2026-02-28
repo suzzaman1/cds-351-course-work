@@ -1,0 +1,25 @@
+b) Row-wise performance
+
+When the program reads the matrix row by row, it runs fast and smooth, even when the matrix gets bigger.
+This happens because the numbers in each row are stored next to each other in memory, so the computer can grab several of 
+them at once. As the matrix grows, the time goes up a little, but not too much.
+
+c) Column-wise performance
+
+When the program reads the matrix column by column, it becomes much slower as the matrix gets larger.
+That’s because the numbers in each column are spread out in memory, so the computer has to keep jumping around to get them.
+The slowdown becomes noticeable around matrix sizes like 1000 or bigger, when the data no longer fits well in the cache.
+
+d) Cache line size effect
+
+A cache line is a small block of data the computer reads from memory at once (usually 64 bytes).
+When going row by row, the computer uses the whole cache line efficiently.
+But when going column by column, it only uses a tiny part of each cache line and wastes the rest.
+So, bigger cache lines help row access, but they make column access slower because of more wasted data.
+
+e) Optimization
+
+The new results are a bit different from the old ones. The row-wise times got faster, especially for big matrices, meaning the
+program is using memory more efficiently. But the column-wise times got slower, and for the largest matrix, it took more than 
+twice as long. This happened because column-wise access doesn’t use memory in order, so it’s less efficient. In short, the 
+optimization made row-wise access better but made column-wise access slower.
